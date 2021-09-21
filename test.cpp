@@ -169,6 +169,7 @@ public:
     }
 private:
     A() = default;
+    int x = 1234;
 };
 
 int main()
@@ -210,7 +211,13 @@ int main()
     } 
     std::cout << std::endl;
 
+    A& a = A::get();
+    char buff[sizeof(A)];
+    for (int i = 0; i < sizeof(A); ++i) {
+        buff[i] = ((char*)&a)[i];
+    }
 
+    A *ptr = (A*)buff;
 
     return 0;
 }
